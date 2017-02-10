@@ -1,0 +1,21 @@
+sudo: required
+
+services:
+  - docker
+
+before_install:
+  - docker pull gbraad/flatpak
+
+install:
+  - docker run -it -d --volume=$TRAVIS_BUILD_DIR:/data:rw gbraad/flatpak sh
+  - docker exec -it $(docker ps --format '{{.ID}}' --latest) dnf --assumeyes install make wget
+  - docker exec -it $(docker ps --format '{{.ID}}' --latest) ls -ahls /data
+  - docker exec -it $(docker ps --format '{{.ID}}' --latest) make --directory=/data remotes
+  - docker exec -it $(docker ps --format '{{.ID}}' --latest) make --directory=/data deps
+
+script:
+  - docker exec -it $(docker ps --format '{{.ID}}' --latest) make --directory=/data build
+  - docker exec -it $(docker ps --format '{{.ID}}' --latest) make --directory=/data bundle
+
+before_cache:
+  - docker kill $(docker ps --format '{{.ID}}' --latest)
