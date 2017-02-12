@@ -42,8 +42,8 @@ run-builder-gdb:
 	flatpak-builder --run ---allow=devel app $(MANIFEST) gdb $(CMD)
 
 remotes:
-	flatpak remote-add --from gnome https://sdk.gnome.org/gnome.flatpakrepo --if-not-exists
+	flatpak remote-add --if-not-exists --user --from gnome https://sdk.gnome.org/gnome.flatpakrepo
 
 deps:
-	flatpak install $(ARGS) gnome org.freedesktop.Platform//1.4
-	flatpak install $(ARGS) gnome org.freedesktop.Sdk//1.4
+	flatpak install --user --runtime $(ARGS) gnome org.freedesktop.Platform//1.4
+	flatpak install --user --runtime $(ARGS) gnome org.freedesktop.Sdk//1.4
