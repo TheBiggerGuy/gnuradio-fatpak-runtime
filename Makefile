@@ -46,4 +46,4 @@ remotes:
 
 deps:
 	flatpak install $(ARGS) gnome org.freedesktop.Platform//1.4
-	flatpak install $(ARGS) gnome org.freedesktop.Skd//1.4
+	flatpak install $(ARGS) gnome org.freedesktop.Sdk//1.4
