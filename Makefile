@@ -10,10 +10,10 @@ clean:
 	rm -f $(APP).flatpak
 
 build:
-	flatpak-builder --ccache --force-clean                       --repo=$(REPO) --subject="git-`git log --pretty=format:'%h' -n 1`" app $(MANIFEST)
+	flatpak-builder --ccache --force-clean                                 --repo=$(REPO) --subject="git-`git log --pretty=format:'%h' -n 1`" app $(MANIFEST)
 
 build-inc: clean
-	flatpak-builder --ccache --keep-build-dirs --disable-updates --repo=$(REPO) --subject="git-`git log --pretty=format:'%h' -n 1`" app $(MANIFEST)
+	flatpak-builder --ccache --keep-build-dirs --disable-updates --verbose --repo=$(REPO) --subject="git-`git log --pretty=format:'%h' -n 1`" app $(MANIFEST)
 
 bundle:
 	flatpak build-bundle $(REPO) $(APP).flatpak $(APP)
