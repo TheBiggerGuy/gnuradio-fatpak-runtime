@@ -4,15 +4,7 @@
   "runtime": "org.freedesktop.Platform",
   "runtime-version": "1.4",
   "sdk": "org.freedesktop.Sdk",
-  "command": "gqrx",
-  "finish-args": [
-    "--socket=x11",
-    "--socket=wayland",
-    "--socket=pulseaudio",
-    "--filesystem=home:rw",
-    "--share=ipc",
-    "--device=dri"
-  ],
+  "build-runtime": true,
   "modules": [
     "boost.json",
     "libusb.json",
